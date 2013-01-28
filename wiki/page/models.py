@@ -7,11 +7,16 @@ class PageRevision(models.Model):
 
     number = models.IntegerField(verbose_name='Revision Number')
     contents = models.TextField(verbose_name='Page Contents')
+    comment = models.CharField(verbose_name='Comment', max_length=256)
+    creation_date = models.DateTimeField(auto_now_add=True)
 
     page = models.ForeignKey('Page', related_name='revision_history')
 
     def __unicode__(self):
         return 'Revision {rev} of Page {title}'.format(rev = self.number, title=self.page.title)
+
+    class Meta:
+        get_latest_by = 'creation_date'
 
 class Page(models.Model):
     """
@@ -23,5 +28,22 @@ class Page(models.Model):
 
     current_revision = models.OneToOneField('PageRevision', related_name='current_set', null=True, blank=True)
 
+    def next_revision(self):
+        if self.current_revision:
+            return self.current_revision.number + 1
+        else:
+            return 0
+
     def __unicode__(self):
         return 'Wiki Page: {title}'.format(title=self.title)
+
+from django.forms import ModelForm, Textarea
+
+class PageRevisionForm(ModelForm):
+    class Meta:
+        model = PageRevision
+        fields = ('contents', 'comment')
+        widgets = {
+            'contents': Textarea(attrs={'cols': 120, 'rows': 40}),
+            'comment': Textarea(attrs={'cols': 120, 'rows': 2}),
+            }

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block contents %}
+<h1>{{ title }}</h1>
+
+<table>
+    <tr>
+        <th>Modification time</th>
+        <th>Page Title</th>
+        <th>Comment</th>
+    </tr>
+    {% for revision in revisions %}
+    <tr>
+        <td>{{ revision.creation_date }}</td>
+        <td><a href="{{ revision.page.slug }}">{{ revision.page.title }}</a></td>
+        <td>{{ revision.comment }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

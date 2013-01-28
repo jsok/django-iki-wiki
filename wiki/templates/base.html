@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+
+    <body>
+
+    <nav>
+        <ul>
+            <li><a href="/index">Index</a></li>
+            <li><a href="/history">Global History</a></li>
+        {% block navigation %}{% endblock %}
+        </ul>
+    </nav>
+
+    <section>
+    {% block contents %}{% endblock %}
+    </section>
+
+    </body>
+</html>

@@ -8,6 +8,10 @@ urlpatterns = patterns('',
 )
 
 urlpatterns += patterns('page.views',
+    url(r'^$', "index"),
     url(r'^index$', "index"),
-    url(r'^(?P<page_slug>.+/|)$', "view_page")
+    url(r'^history$', "history"),
+    url(r'^(?P<page_slug>.+|)/$', "handle_page"),
+    url(r'^(?P<page_slug>.+|)/edit$', "edit_page"),
+    url(r'^(?P<page_slug>.+|)/history$', "history")
 )
