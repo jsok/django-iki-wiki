@@ -16,6 +16,11 @@ It makes use of the standard [Python markdown library](http://packages.python.or
 
 [Cheat sheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 
+Third Party Libraries
+---------
+- Using [Twitter Bootstrap](http://twitter.github.com/bootstrap) for styling.
+- Using [Highlight.js](http://softwaremaniacs.org/soft/highlight/en/) for diff highlighting in Page History.
+
 Tests
 -----
 Use the Django test runner:
