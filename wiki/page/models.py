@@ -13,7 +13,7 @@ class PageRevision(models.Model):
     page = models.ForeignKey('Page', related_name='revision_history')
 
     def __unicode__(self):
-        return 'Revision {rev} of Page {title}'.format(rev = self.number, title=self.page.title)
+        return '{title} @ r{rev}'.format(rev = self.number, title=self.page.title)
 
     class Meta:
         get_latest_by = 'creation_date'
@@ -35,7 +35,7 @@ class Page(models.Model):
             return 0
 
     def __unicode__(self):
-        return 'Wiki Page: {title}'.format(title=self.title)
+        return '{title}'.format(title=self.title)
 
 from django.forms import ModelForm, Textarea
 

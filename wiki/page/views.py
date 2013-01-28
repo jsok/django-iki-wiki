@@ -26,7 +26,7 @@ def history(request, page_slug=None, template_name='history.html'):
     }
     return render_to_response(template_name, RequestContext(request, context))
 
-def handle_page(request, page_slug=None, template_name='page/view.html'):
+def handle_page(request, page_slug=None):
     try:
         page = Page.objects.get(slug=page_slug)
         return view_page(request, page)
@@ -48,6 +48,7 @@ def view_page(request, page, template_name='page/view.html'):
     return render_to_response(template_name, RequestContext(request, context))
 
 def edit_page(request, page_slug=None, template_name='page/edit.html'):
+    title = title_from_slug(page_slug)
     try:
         page = Page.objects.get(slug=page_slug)
     except Page.DoesNotExist:
@@ -59,7 +60,7 @@ def edit_page(request, page_slug=None, template_name='page/edit.html'):
 
         if form.is_valid():
             # Save the page, in case it is new and because a revision requires a valid Page object
-            page.title = page_slug
+            page.title = title
             page.slug = page_slug
             page.save()
 
@@ -81,7 +82,7 @@ def edit_page(request, page_slug=None, template_name='page/edit.html'):
         form = PageRevisionForm(instance=page.current_revision, initial={"comment": ""})
 
     context = {
-        'title': page_slug,
+        'title': title,
         'form': form.as_table(),
     }
     return render_to_response(template_name, RequestContext(request, context))

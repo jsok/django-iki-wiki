@@ -11,10 +11,11 @@ class PageTitleTestCase(TestCase):
             ("HumanBody", "Human Body"),
             ("Parts_of_the_HumanBody", "Parts Of The Human Body"),
             ("HumanBody/Parts", "Human Body / Parts"),
+            ("HumanBody/Parts/Dissected_by_scientists", "Human Body / Parts / Dissected By Scientists")
         ]
 
         for input, expected_output in tests:
-            output = title_from_slug(input)
+            output = title_from_slug(unicode(input))
             self.assertEqual(expected_output, output,
                 "{input} title produced {output} instead of {expected_output}".format(
                     input=input, output=output, expected_output=expected_output
@@ -22,4 +23,4 @@ class PageTitleTestCase(TestCase):
             )
 
 if __name__ == '__main__':
-    main()
+    main()z
