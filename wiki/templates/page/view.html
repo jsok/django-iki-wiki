@@ -9,5 +9,7 @@
 
 {% block contents %}
 <h1>{{ title }}</h1>
+{% autoescape off %}
 {{ contents }}
+{% endautoescape %}
 {% endblock %}

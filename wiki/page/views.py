@@ -2,6 +2,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
+import markdown
+
 from models import Page, PageRevision, PageRevisionForm
 from utils import title_from_slug
 
@@ -41,9 +43,10 @@ def new_page(request, title, template_name='page/new.html'):
     return render_to_response(template_name, RequestContext(request, context))
 
 def view_page(request, page, template_name='page/view.html'):
+    contents = markdown.markdown(page.current_revision.contents)
     context = {
         'title': page.title,
-        'contents': page.current_revision.contents,
+        'contents': contents,
     }
     return render_to_response(template_name, RequestContext(request, context))
 
