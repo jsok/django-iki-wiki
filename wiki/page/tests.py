@@ -23,4 +23,4 @@ class PageTitleTestCase(TestCase):
             )
 
 if __name__ == '__main__':
-    main()z
+    main()
