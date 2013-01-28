@@ -2,7 +2,7 @@
 {% block title %}Index{% endblock %}
 
 {% block contents %}
-        <ul>
+        <ul class="unstyled">
         {% for page in pages %}
         <li><a href="{{page.slug}}">{{ page.title }}</a></li>
         {% endfor %}
