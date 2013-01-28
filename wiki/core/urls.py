@@ -13,5 +13,6 @@ urlpatterns += patterns('page.views',
     url(r'^history$', "history"),
     url(r'^(?P<page_slug>.+|)/$', "handle_page"),
     url(r'^(?P<page_slug>.+|)/edit$', "edit_page"),
-    url(r'^(?P<page_slug>.+|)/history$', "history")
+    url(r'^(?P<page_slug>.+|)/history$', "page_history"),
+    url(r'^(?P<page_slug>.+|)/diff$', "diff_page")
 )

@@ -12,6 +12,9 @@ class PageRevision(models.Model):
 
     page = models.ForeignKey('Page', related_name='revision_history')
 
+    def previous_revision(self):
+        return max(self.number - 1, 0)
+
     def __unicode__(self):
         return '{title} @ r{rev}'.format(rev = self.number, title=self.page.title)
 

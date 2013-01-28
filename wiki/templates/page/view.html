@@ -1,16 +1,22 @@
 {% extends "base.html" %}
 {% block title %}{{ title }}{% endblock %}
 
-
 {% block navigation %}
         <li><a href="edit"><i class="icon-edit"></i> Edit Page</a></li>
         <li><a href="history"><i class="icon-folder-open"></i> Page History</a></li>
 {% endblock %}
 
 {% block contents %}
+{% if is_old_revision %}
+<div class="alert">
+    <strong>Alert!</strong> You are viewing this page at an older revision. <a href="/{{ slug }}">View current</a>.
+</div>
+{% endif %}
+
 <div class="hero-unit">
     <h1>{{ title }}</h1>
 </div>
+
 {% autoescape off %}
 {{ contents }}
 {% endautoescape %}

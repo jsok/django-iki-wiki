@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block contents %}
+<a class="btn btn-large btn-primary" type="button" href="/{{ slug }}">View Page</a>
+<h1>{{ title }}</h1>
+
+<table class="table table-striped">
+    <tr>
+        <th>Modification time</th>
+        <th>View Page</th>
+        <th>Comment</th>
+        <th>Diff Against</th>
+    </tr>
+
+    {% for revision in revisions %}
+    <tr>
+        <td>{{ revision.creation_date }}</td>
+        <td><a href="/{{ revision.page.slug }}?rev={{ revision.number }}">
+            {{ revision.page.title }} @ rev {{ revision.number }}</a></td>
+        <td>{{ revision.comment }}</td>
+        <td>
+            <div class="btn-toolbar">
+                <div class="btn-group">
+                    {% if current_revision == revision.number %}
+                    <a class="btn btn-mini disabled" href="diff?a={{ current_revision }}&b={{ revision.number }}">
+                    {% else %}
+                    <a class="btn btn-mini" href="diff?a={{ current_revision }}&b={{ revision.number }}">
+                    {% endif %}
+                    <i class="icon-circle-arrow-up"></i> Head</a>
+
+                    {% if revision.previous_revision == revision.number %}
+                    <a class="btn btn-mini disabled href="diff?a={{ revision.previous_revision }}&b={{ revision.number }}">
+                    {% else %}
+                    <a class="btn btn-mini" href="diff?a={{ revision.previous_revision }}&b={{ revision.number }}">
+                    {% endif %}
+                    <i class="icon-chevron-down"></i> Previous</a>
+                </div>
+            </div>
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+{% endblock %}
