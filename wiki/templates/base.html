@@ -1,23 +1,35 @@
 <!DOCTYPE html>
+{% load static from staticfiles %}
 
-<html>
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
     <head>
         <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.css" %}">
     </head>
 
     <body>
 
-    <nav>
-        <ul>
-            <li><a href="/index">Index</a></li>
-            <li><a href="/history">Global History</a></li>
-        {% block navigation %}{% endblock %}
-        </ul>
-    </nav>
+    <div class="navbar">
+        <div class="navbar-inner">
+            <a class="brand" href="/">Iki Wiki</a>
+            <ul class="nav">
+                <li class="divider-vertical"></li>
+                <li><a href="/"><i class="icon-home"></i> Index</a></li>
+                <li><a href="/history"><i class="icon-globe"></i> Global History</a></li>
+                <li class="divider-vertical"></li>
+                {% block navigation %}{% endblock %}
+            </ul>
+        </div>
+    </div>
 
-    <section>
-    {% block contents %}{% endblock %}
-    </section>
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                {% block contents %}{% endblock %}
+            </div>
+        </div>
+
+    </div>
 
     </body>
 </html>

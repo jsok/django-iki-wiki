@@ -44,6 +44,6 @@ class PageRevisionForm(ModelForm):
         model = PageRevision
         fields = ('contents', 'comment')
         widgets = {
-            'contents': Textarea(attrs={'cols': 120, 'rows': 40}),
-            'comment': Textarea(attrs={'cols': 120, 'rows': 2}),
-            }
+            'contents': Textarea(attrs={'cols': 120, 'rows': 20, 'class': "input-xxlarge"}),
+            'comment': Textarea(attrs={'cols': 120, 'rows': 2, 'class': "input-xxlarge"}),
+        }

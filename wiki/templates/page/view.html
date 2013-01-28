@@ -3,12 +3,14 @@
 
 
 {% block navigation %}
-        <li><a href="edit">Edit Page</a></li>
-        <li><a href="history">Page History</a></li>
+        <li><a href="edit"><i class="icon-edit"></i> Edit Page</a></li>
+        <li><a href="history"><i class="icon-folder-open"></i> Page History</a></li>
 {% endblock %}
 
 {% block contents %}
-<h1>{{ title }}</h1>
+<div class="hero-unit">
+    <h1>{{ title }}</h1>
+</div>
 {% autoescape off %}
 {{ contents }}
 {% endautoescape %}
